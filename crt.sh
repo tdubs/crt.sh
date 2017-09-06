@@ -15,6 +15,8 @@ fi
 echo -e "[+] Making directory $DIR"
 mkdir $DIR
 echo -e "[+] Downloading from https://crt.sh"
+TARGET=${TARGET// /+}
+echo -e "[+] url: https://crt.sh/?q=$TARGET"
 curl -s https://crt.sh/?q=$TARGET > $DIR/curl.txt
 echo -e "[+] Saving Certificate IDs to $DIR/crt.ids"
 cat $DIR/curl.txt | grep ?id= | cut -d \" -f5 | cut -d '<' -f1 | cut -d '>' -f2 >> $DIR/crt.ids
